@@ -51,7 +51,6 @@ Access tokens auto-refresh using the stored refresh token (no re-login needed fo
 |------|-------------|
 | `get_listings` | List all active listings |
 | `get_listing` | Get a listing by ID |
-| `update_listing` | Update listing settings |
 | `get_calendar` | Get per-date pricing and availability |
 | `set_prices` | Set per-date price overrides |
 
@@ -71,18 +70,6 @@ Access tokens auto-refresh using the stored refresh token (no re-login needed fo
 | `send_message` | Send a message to a guest |
 | `get_reviews` | Get Airbnb reviews for a listing |
 
-### Listing Groups
-| Tool | Description |
-|------|-------------|
-| `get_listing_groups` | List all listing groups |
-| `get_listing_group` | Get a listing group by ID |
-
-### Webhooks
-| Tool | Description |
-|------|-------------|
-| `get_webhook` | Get configured webhook URL |
-| `set_webhook` | Set webhook URL |
-| `delete_webhook` | Delete webhook URL |
 
 ## Stored Files
 

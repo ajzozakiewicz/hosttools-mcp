@@ -10,10 +10,8 @@ import { DEFAULT_CALLBACK_PORT } from "./auth/flow.js";
 import * as AuthLogin from "./tools/auth-login.js";
 import * as AuthStatus from "./tools/auth-status.js";
 import * as AuthLogout from "./tools/auth-logout.js";
-import * as GetUser from "./tools/get-user.js";
 import * as GetListings from "./tools/get-listings.js";
 import * as GetListing from "./tools/get-listing.js";
-import * as UpdateListing from "./tools/update-listing.js";
 import * as GetCalendar from "./tools/get-calendar.js";
 import * as SetPrices from "./tools/set-prices.js";
 import * as GetReservations from "./tools/get-reservations.js";
@@ -73,13 +71,9 @@ server.tool("auth_login", "Start the OAuth flow. Returns a browser URL to author
 server.tool("auth_status", "Check whether you are currently authenticated and when the access token expires.", AuthStatus.schema.shape, wrap((i) => AuthStatus.handler(i)));
 server.tool("auth_logout", "Revoke the stored access tokens and log out.", AuthLogout.schema.shape, wrap((i) => AuthLogout.handler(i)));
 
-// User tools
-server.tool("get_user", "Get the current authenticated user's profile.", GetUser.schema.shape, wrap((i) => GetUser.handler(i, getToken)));
-
 // Listing tools
 server.tool("get_listings", "List all active listings. Optionally filter by availability date range.", GetListings.schema.shape, wrap((i) => GetListings.handler(i, getToken)));
 server.tool("get_listing", "Get detailed information for a specific listing.", GetListing.schema.shape, wrap((i) => GetListing.handler(i, getToken)));
-server.tool("update_listing", "Update listing settings (name, pricing, check-in/out times, sync toggles, etc.).", UpdateListing.schema.shape, wrap((i) => UpdateListing.handler(i, getToken)));
 server.tool("get_calendar", "Get per-date pricing and availability for a listing within a date range.", GetCalendar.schema.shape, wrap((i) => GetCalendar.handler(i, getToken)));
 server.tool("set_prices", "Set per-date price overrides for a listing.", SetPrices.schema.shape, wrap((i) => SetPrices.handler(i, getToken)));
 
