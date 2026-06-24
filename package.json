@@ -1,0 +1,36 @@
+{
+  "name": "@ajz/hosttools-mcp",
+  "version": "1.0.0",
+  "description": "A free and open source mcp server for interaction with the hosttools platform via API token",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "hosttools-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajzozakiewicz/hosttools-mcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajzozakiewicz/hosttools-mcp/issues"
+  },
+  "homepage": "https://github.com/ajzozakiewicz/hosttools-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
