@@ -1,4 +1,4 @@
-# hosttools-mcp
+# @ajz/hosttools-mcp
 
 A free and open source MCP server for the [Host Tools](https://hosttools.com) platform.
 

@@ -27,7 +27,7 @@ export async function registerClient(redirectUri?: string): Promise<ClientRecord
   const uri = redirectUri ?? DEFAULT_REDIRECT_URI;
 
   const body: RegistrationRequest = {
-    client_name: "hosttools-mcp",
+    client_name: "ajz-hosttools-mcp",
     redirect_uris: [uri],
     grant_types: ["authorization_code", "refresh_token"],
     response_types: ["code"],
