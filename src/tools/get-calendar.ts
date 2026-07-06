@@ -2,6 +2,8 @@ import { z } from 'zod'
 import type { GetToken } from '../api/client.js'
 import { getCalendar } from '../api/listings.js'
 import { ok } from './utils.js'
+import lodash from 'lodash'
+const { omit } = lodash
 
 export const schema = z.object({
   listingId: z.string().describe('The listing _id'),
@@ -10,5 +12,7 @@ export const schema = z.object({
 })
 
 export async function handler(input: z.infer<typeof schema>, getToken: GetToken) {
-  return ok(await getCalendar(getToken, input.listingId, input.startDate, input.endDate))
+  const result = await getCalendar(getToken, input.listingId, input.startDate, input.endDate)
+  const filtered = omit(result, ['userID'])
+  return ok(filtered)
 }
