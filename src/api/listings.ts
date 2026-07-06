@@ -1,5 +1,5 @@
-import { apiGet, apiPost, type GetToken } from "./client.js";
-import type { Listing, Calendar, PriceEntry, ListingGroup } from "../types/api.js";
+import { apiGet, apiPost, type GetToken } from './client.js'
+import type { Listing, Calendar, PriceEntry, ListingGroup } from '../types/api.js'
 
 interface GetListingsResponse {
   listings: Listing[];
@@ -11,15 +11,15 @@ export async function getListings(
   startDate?: string,
   endDate?: string
 ): Promise<Listing[]> {
-  const query: Record<string, string> = {};
-  if (startDate) query.startDate = startDate;
-  if (endDate) query.endDate = endDate;
-  const res = await apiGet<GetListingsResponse>("/api/getListings", getToken, query);
-  return res.listings;
+  const query: Record<string, string> = {}
+  if (startDate) query.startDate = startDate
+  if (endDate) query.endDate = endDate
+  const res = await apiGet<GetListingsResponse>('/api/getListings', getToken, query)
+  return res.listings
 }
 
 export async function getListing(getToken: GetToken, listingId: string): Promise<Listing> {
-  return apiGet<Listing>(`/api/getListing/${listingId}`, getToken);
+  return apiGet<Listing>(`/api/getListing/${listingId}`, getToken)
 }
 
 export async function updateListing(
@@ -27,7 +27,7 @@ export async function updateListing(
   listingId: string,
   updates: Partial<Listing>
 ): Promise<{ success: boolean; syncPushed?: boolean }> {
-  return apiPost(`/api/setListing/${listingId}`, getToken, updates);
+  return apiPost(`/api/setListing/${listingId}`, getToken, updates)
 }
 
 export async function getCalendar(
@@ -36,7 +36,7 @@ export async function getCalendar(
   startDate: string,
   endDate: string
 ): Promise<Calendar> {
-  return apiGet<Calendar>(`/api/getCalendar/${listingId}/${startDate}/${endDate}`, getToken);
+  return apiGet<Calendar>(`/api/getCalendar/${listingId}/${startDate}/${endDate}`, getToken)
 }
 
 export async function setPrices(
@@ -44,16 +44,16 @@ export async function setPrices(
   listingId: string,
   prices: PriceEntry[]
 ): Promise<{ success: boolean }> {
-  return apiPost(`/api/setPrices/${listingId}`, getToken, { prices });
+  return apiPost(`/api/setPrices/${listingId}`, getToken, { prices })
 }
 
 export async function getListingGroups(getToken: GetToken): Promise<ListingGroup[]> {
-  return apiGet<ListingGroup[]>("/api/listingGroups", getToken);
+  return apiGet<ListingGroup[]>('/api/listingGroups', getToken)
 }
 
 export async function getListingGroup(
   getToken: GetToken,
   groupId: string
 ): Promise<ListingGroup> {
-  return apiGet<ListingGroup>(`/api/getListingGroup/${groupId}`, getToken);
+  return apiGet<ListingGroup>(`/api/getListingGroup/${groupId}`, getToken)
 }

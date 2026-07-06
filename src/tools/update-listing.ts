@@ -1,10 +1,10 @@
-import { z } from "zod";
-import type { GetToken } from "../api/client.js";
-import { updateListing } from "../api/listings.js";
-import { ok } from "./utils.js";
+import { z } from 'zod'
+import type { GetToken } from '../api/client.js'
+import { updateListing } from '../api/listings.js'
+import { ok } from './utils.js'
 
 export const schema = z.object({
-  listingId: z.string().describe("The listing _id"),
+  listingId: z.string().describe('The listing _id'),
   name: z.string().optional(),
   address: z.string().optional(),
   checkInTime: z.number().int().min(0).max(23).optional(),
@@ -21,9 +21,9 @@ export const schema = z.object({
   currency: z.string().optional(),
   timeZone: z.string().optional(),
   bookingWindow: z.number().optional(),
-});
+})
 
 export async function handler(input: z.infer<typeof schema>, getToken: GetToken) {
-  const { listingId, ...updates } = input;
-  return ok(await updateListing(getToken, listingId, updates));
+  const { listingId, ...updates } = input
+  return ok(await updateListing(getToken, listingId, updates))
 }

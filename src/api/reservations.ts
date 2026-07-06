@@ -1,5 +1,5 @@
-import { apiGet, apiPost, type GetToken } from "./client.js";
-import type { Reservation, GuestCounts, PricingQuote } from "../types/api.js";
+import { apiGet, apiPost, type GetToken } from './client.js'
+import type { Reservation, GuestCounts, PricingQuote } from '../types/api.js'
 
 interface GetReservationsResponse {
   reservations: Reservation[];
@@ -15,15 +15,15 @@ export async function getReservations(
   const res = await apiGet<GetReservationsResponse>(
     `/api/getReservations/${listingId}/${startDate}/${endDate}`,
     getToken
-  );
-  return res.reservations;
+  )
+  return res.reservations
 }
 
 export async function getReservation(
   getToken: GetToken,
   reservationId: string
 ): Promise<Reservation> {
-  return apiGet<Reservation>(`/api/getReservation/${reservationId}`, getToken);
+  return apiGet<Reservation>(`/api/getReservation/${reservationId}`, getToken)
 }
 
 export interface CreateReservationInput {
@@ -38,7 +38,7 @@ export interface CreateReservationInput {
   guests: GuestCounts;
   hostPayout: number;
   guestPrice: number;
-  status?: "inquiry" | "pending" | "accepted";
+  status?: 'inquiry' | 'pending' | 'accepted';
   notes?: string;
   checkInTime?: number;
   checkOutTime?: number;
@@ -48,7 +48,7 @@ export async function createReservation(
   getToken: GetToken,
   input: CreateReservationInput
 ): Promise<{ success: boolean; reservationID: string }> {
-  return apiPost("/api/createReservation", getToken, input);
+  return apiPost('/api/createReservation', getToken, input)
 }
 
 export interface UpdateReservationInput {
@@ -71,14 +71,14 @@ export async function updateReservation(
   reservationId: string,
   updates: UpdateReservationInput
 ): Promise<{ success: boolean }> {
-  return apiPost(`/api/setReservation/${reservationId}`, getToken, updates);
+  return apiPost(`/api/setReservation/${reservationId}`, getToken, updates)
 }
 
 export async function cancelReservation(
   getToken: GetToken,
   reservationId: string
 ): Promise<{ success: boolean }> {
-  return apiPost(`/api/cancelReservation/${reservationId}`, getToken, {});
+  return apiPost(`/api/cancelReservation/${reservationId}`, getToken, {})
 }
 
 export async function getPricingQuote(
@@ -92,5 +92,5 @@ export async function getPricingQuote(
     startDate,
     endDate,
     guests,
-  });
+  })
 }

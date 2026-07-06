@@ -1,4 +1,4 @@
-const BASE_URL = "https://app.hosttools.com";
+const BASE_URL = 'https://app.hosttools.com'
 
 export class ApiError extends Error {
   constructor(
@@ -6,8 +6,8 @@ export class ApiError extends Error {
     message: string,
     public readonly body?: unknown
   ) {
-    super(message);
-    this.name = "ApiError";
+    super(message)
+    this.name = 'ApiError'
   }
 }
 
@@ -20,28 +20,28 @@ async function makeRequest(
   getToken: GetToken,
   options: { query?: Record<string, string>; body?: unknown } = {}
 ): Promise<Response> {
-  const url = new URL(`${BASE_URL}${path}`);
+  const url = new URL(`${BASE_URL}${path}`)
   if (options.query) {
-    for (const [k, v] of Object.entries(options.query)) url.searchParams.set(k, v);
+    for (const [k, v] of Object.entries(options.query)) url.searchParams.set(k, v)
   }
 
-  const token = await getToken();
-  const headers: Record<string, string> = { Authorization: `Bearer ${token}` };
-  if (options.body !== undefined) headers["Content-Type"] = "application/json";
+  const token = await getToken()
+  const headers: Record<string, string> = { Authorization: `Bearer ${token}` }
+  if (options.body !== undefined) headers['Content-Type'] = 'application/json'
 
   return fetch(url.toString(), {
     method,
     headers,
     body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
-  });
+  })
 }
 
 async function parseResponse<T>(res: Response, method: string, path: string): Promise<T> {
   if (!res.ok) {
-    const body = await res.json().catch(() => null);
-    throw new ApiError(res.status, `${method} ${path} failed: ${res.statusText}`, body);
+    const body = await res.json().catch(() => null)
+    throw new ApiError(res.status, `${method} ${path} failed: ${res.statusText}`, body)
   }
-  return res.json() as Promise<T>;
+  return res.json() as Promise<T>
 }
 
 export async function apiGet<T>(
@@ -49,8 +49,8 @@ export async function apiGet<T>(
   getToken: GetToken,
   query?: Record<string, string>
 ): Promise<T> {
-  const res = await makeRequest("GET", path, getToken, { query });
-  return parseResponse<T>(res, "GET", path);
+  const res = await makeRequest('GET', path, getToken, { query })
+  return parseResponse<T>(res, 'GET', path)
 }
 
 export async function apiPost<T>(
@@ -58,8 +58,8 @@ export async function apiPost<T>(
   getToken: GetToken,
   body: unknown
 ): Promise<T> {
-  const res = await makeRequest("POST", path, getToken, { body });
-  return parseResponse<T>(res, "POST", path);
+  const res = await makeRequest('POST', path, getToken, { body })
+  return parseResponse<T>(res, 'POST', path)
 }
 
 export async function apiPatch<T>(
@@ -67,14 +67,14 @@ export async function apiPatch<T>(
   getToken: GetToken,
   body: unknown
 ): Promise<T> {
-  const res = await makeRequest("PATCH", path, getToken, { body });
-  return parseResponse<T>(res, "PATCH", path);
+  const res = await makeRequest('PATCH', path, getToken, { body })
+  return parseResponse<T>(res, 'PATCH', path)
 }
 
 export async function apiDelete<T>(
   path: string,
   getToken: GetToken
 ): Promise<T> {
-  const res = await makeRequest("DELETE", path, getToken);
-  return parseResponse<T>(res, "DELETE", path);
+  const res = await makeRequest('DELETE', path, getToken)
+  return parseResponse<T>(res, 'DELETE', path)
 }

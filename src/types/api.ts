@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface NearbyAmenity {
-  type: "Airport" | "Ferry" | "Shopping" | "Railway" | "Beach";
+  type: 'Airport' | 'Ferry' | 'Shopping' | 'Railway' | 'Beach';
   distance: number; // meters
 }
 
@@ -70,7 +70,7 @@ export interface Listing {
   bedrooms?: number;
   bathrooms?: number;
   space?: number;
-  spaceUnit?: "SQ_M" | "SQ_FT";
+  spaceUnit?: 'SQ_M' | 'SQ_FT';
   maxGuests?: number;
   minNights?: number;
   basePrice?: number;
@@ -106,7 +106,7 @@ export interface Listing {
   weeklyDiscount?: number | null;
   monthlyDiscount?: number | null;
   nonRefundableDiscount?: number | null;
-  priceSource?: "Amount" | "VRBO" | "Houfy" | "API" | "Listing";
+  priceSource?: 'Amount' | 'VRBO' | 'Houfy' | 'API' | 'Listing';
   priceSourceListingID?: string | null;
   bookingWindow?: number;
   linkedRoomID?: string | null;
@@ -148,7 +148,7 @@ export interface Rate {
   name: string;
   paidToHost?: boolean;
   paidBy?: string;
-  type?: "price" | "fee" | "tax" | "deposit";
+  type?: 'price' | 'fee' | 'tax' | 'deposit';
 }
 
 export interface Post {
@@ -169,7 +169,7 @@ export interface Reservation {
   inquiryDate?: string;
   pendingDate?: string;
   cancelledDate?: string;
-  status: "accepted" | "pending" | "cancelled" | "inquiry";
+  status: 'accepted' | 'pending' | 'cancelled' | 'inquiry';
   nights?: number;
   firstName?: string;
   lastName?: string;
@@ -204,7 +204,7 @@ export interface Review {
 export interface PricingQuoteLineItem {
   label: string;
   amount: number;
-  type: "price" | "fee" | "tax" | "deposit";
+  type: 'price' | 'fee' | 'tax' | 'deposit';
 }
 
 export interface PricingQuote {
